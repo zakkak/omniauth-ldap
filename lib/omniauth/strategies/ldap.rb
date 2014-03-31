@@ -38,6 +38,7 @@ module OmniAuth
         # The sooner the better
         return fail!(:missing_credentials) if missing_credentials?
 
+        # The HACK!  FIXME: do it in a more generic/configurable way
         @options[:bind_dn]  = "CN=#{request['username']},OU=Test,DC=my,DC=example,DC=com"
         @options[:password] = request['password']
         @adaptor = OmniAuth::LDAP::Adaptor.new @options
