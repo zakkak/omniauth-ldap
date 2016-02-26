@@ -40,6 +40,8 @@ module OmniAuth
       def initialize(configuration={})
         Adaptor.validate(configuration)
         @configuration = configuration.dup
+        # The HACK!  FIXME: do it in a more generic/configurable way
+        @configuration[:bind_dn]  = "CN=#{@configuration[:login]},OU=Test,DC=my,DC=example,DC=com"
         @configuration[:allow_anonymous] ||= false
         @logger = @configuration.delete(:logger)
         VALID_ADAPTER_CONFIGURATION_KEYS.each do |name|
